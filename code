@@ -1,0 +1,76 @@
+import pandas as pd
+
+#dados dos livros
+livros_data = {
+    "id_livros": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    "titulo": [
+        "Quando me descobri negra", "Seja egoísta com a sua carreira", "O pequeno príncipe",
+        "Eu, Robô", "Dom Casmurro", "O milagre da manhã", "O poder do hábito",
+        "A biblioteca da meia noite", "A menina das palavras", "Um estudo em vermelho",
+        "O Cão dos Baskervilles", "Memórias póstumas de Brás Cubas", "O quinze",
+        "Vidas secas", "Cresça 1% ao dia"
+    ],
+    "autor": [
+        "Bianca Santana", "Luciano Santos", "Antoine de Saint-Exupéry", "Isaac Asimov",
+        "Machado de Assis", "Hal Elrod", "Charles Duhigg", "Matt Haig", "Léa Caires",
+        "Árthur Conan Doyle", "Árthur Conan Doyle", "Machado de Assis", "Rachel de Queiroz",
+        "Graciliano Ramos", "Fernão Battistoni"
+    ]
+}
+
+#dados dos usuários
+usuarios_data = {
+    "id_usuario": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    "idade": [19, 26, 32, 16, 56, 77, 34, 42, 27, 55, 36, 65, 43, 22, 18],
+    "genero": ["F", "M", "F", "M", "F", "F", "M", "M", "M", None, "F", None, "F", "M", "F"]
+}
+
+#dados das avaliações
+avaliacoes_data = {
+    "id_avaliacao": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    "id_usuario": [1, 14, 7, 9, 11, 5, 8, 15, 13, 4, 2, 6, 10, 12, 3],
+    "id_livros": [1, 5, 3, 10, 15, 7, 4, 9, 6, 2, 12, 8, 13, 11, 14],
+    "avaliacao": [4.9, 4.8, 5, 4.5, 3.7, 4.9, 2.4, 2.6, 4.8, 5, 1.4, 1.9, 1.5, 4.1, 5]
+}
+
+#criando DataFrames
+livros_df = pd.DataFrame(livros_data)
+usuarios_df = pd.DataFrame(usuarios_data)
+avaliacoes_df = pd.DataFrame(avaliacoes_data)
+
+#salvando os DataFrames como arquivos CSV
+livros_df.to_csv("livros.csv", sep=";", index=False, encoding="utf-8")
+usuarios_df.to_csv("usuarios.csv", sep=";", index=False, encoding="utf-8")
+avaliacoes_df.to_csv("avaliacoes.csv", sep=";", index=False, encoding="utf-8")
+
+print("Arquivos CSV criados com sucesso!")
+
+
+*AÇÃO PARA IA FAZER A MEDIA:*
+
+  import pandas as pd
+
+#carregar os dados
+livros = pd.read_csv("livros.csv", sep=";", encoding="utf-8")
+usuarios = pd.read_csv("usuarios.csv", sep=";", encoding="utf-8")
+avaliacoes = pd.read_csv("avaliacoes.csv", sep=";", encoding="utf-8")
+
+#exibir as primeiras linhas para verificar
+print("Dados dos Livros:\n", livros.head())
+print("Dados dos Usuários:\n", usuarios.head())
+print("Dados das Avaliações:\n", avaliacoes.head())
+
+#simples recomendação baseada em média de avaliações
+#agrupar avaliações por livro e calcular a média
+livros_avaliados = avaliacoes.groupby('id_livros').agg({'avaliacao': 'mean'}).reset_index()
+livros_avaliados = livros_avaliados.rename(columns={'avaliacao': 'media_avaliacao'})
+
+#juntar com o DataFrame de livros
+livros_recomendados = pd.merge(livros, livros_avaliados, on='id_livros')
+
+#ordenar livros por média de avaliação
+livros_recomendados = livros_recomendados.sort_values(by='media_avaliacao', ascending=False)
+
+print("Livros recomendados baseados nas avaliações:\n", livros_recomendados[['titulo', 'media_avaliacao']])
+
+  
