@@ -1,0 +1,38 @@
+*Resultado:*
+Dados dos Livros:
+    id_livros                           titulo                     autor
+0          0         Quando me descobri negra            Bianca Santana
+1          1  Seja egoísta com a sua carreira            Luciano Santos
+2          2               O pequeno príncipe  Antoine de Saint-Exupéry
+3          3                         Eu, Robô              Isaac Asimov
+4          4                     Dom Casmurro          Machado de Assis
+Dados dos Usuários:
+    id_usuario  idade genero
+0           0     19      F
+1           1     26      M
+2           2     32      F
+3           3     16      M
+4           4     56      F
+Dados das Avaliações:
+    id_avaliacao  id_usuario  id_livros  avaliacao
+0             0           1          1        4.9
+1             1          14          5        4.8
+2             2           7          3        5.0
+3             3           9         10        4.5
+4             4          11         15        3.7
+Livros recomendados baseados nas avaliações:
+                              titulo  media_avaliacao
+1                O pequeno príncipe              5.0
+2                          Eu, Robô              5.0
+13                 Cresça 1% ao dia              5.0
+0   Seja egoísta com a sua carreira              4.9
+6        A biblioteca da meia noite              4.9
+4                O milagre da manhã              4.8
+5                 O poder do hábito              4.8
+9            O Cão dos Baskervilles              4.5
+10  Memórias póstumas de Brás Cubas              4.1
+8             Um estudo em vermelho              2.6
+3                      Dom Casmurro              2.4
+7             A menina das palavras              1.9
+12                      Vidas secas              1.5
+11                         O quinze              1.4
