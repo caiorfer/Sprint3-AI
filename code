@@ -73,4 +73,4 @@ livros_recomendados = livros_recomendados.sort_values(by='media_avaliacao', asce
 
 print("Livros recomendados baseados nas avaliações:\n", livros_recomendados[['titulo', 'media_avaliacao']])
 
-  
+  .
